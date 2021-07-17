@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-item no-lines>
+        <ion-avatar item-start>
+          <img src="{{ user.pictureUrl }}">
+        </ion-avatar>
+
+        <p class="username">{{ user.name }}</p>
+        <p class="active-ago text-ellipsis">Active {{ activeAgo }} minutes ago</p>
+      </ion-item>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button icon-only clear>
+        <ion-icon name="md-call"></ion-icon>
+      </button>
+
+      <button ion-button icon-only clear>
+        <ion-icon name="md-videocam"></ion-icon>
+      </button>
+
+      <button ion-button icon-only clear (click)="goToProfile(user)">
+        <ion-icon name="ios-information-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content padding>
+  <ion-refresher (ionRefresh)="getMoreMessages($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngFor="let message of messages">
+    <ion-row *ngIf="message.isDifferentDay">
+      <ion-col text-center>
+        <p class="new-day-time">{{ message.time }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-end (click)="showSeenTime(message)" (press)="showReactionsPopOver($event)">
+      <img *ngIf="!message.sentByMe" class="other-person-image" src="{{ user.pictureUrl }}">
+
+      <div *ngIf="!message.isImage" [class.myMessage]="message.sentByMe" [class.otherMessage]="!message.sentByMe" [class.myTextMessage]="message.sentByMe"
+        [class.otherTextMessage]="!message.sentByMe">
+        <p>{{ message.content }}</p>
+      </div>
+
+      <img *ngIf="message.isImage" class="image-message image-border" src="{{ message.content }}" [class.myMessage]="message.sentByMe"
+        [class.otherMessage]="!message.sentByMe">
+
+      <img *ngIf="message.sentByMe && message.isRead" class="seen-image" src="{{ user.pictureUrl }}">
+
+      <ion-avatar *ngIf="message.sentByMe && !message.isRead && message.isDelivered" class="delivered-image">
+        <img src="../../assets/imgs/tick.png">
+      </ion-avatar>
+    </ion-row>
+
+    <ion-item *ngIf="message.showSeenTime">
+      <p item-end class="seen-time">
+        <strong>Seen</strong> {{ message.seenTime }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-fab *ngIf="imagesVisible" left bottom>
+  <button ion-fab mini>
+    <ion-icon name="md-apps"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-footer>
+  <ion-row>
+    <button ion-button icon-only clear>
+      <ion-icon *ngIf="!textBoxInFocus" name="md-add-circle"></ion-icon>
+      <ion-icon *ngIf="textBoxInFocus" name="ios-arrow-dropright-circle-outline"></ion-icon>
+    </button>
+
+    <button class="grey-button" ion-button icon-only clear *ngIf="!textBoxInFocus" (click)="openCamera()">
+      <ion-icon name="md-camera"></ion-icon>
+    </button>
+
+    <button [class.grey-button]="!imagesVisible" *ngIf="!textBoxInFocus" [class.selected]="imagesVisible" ion-button icon-only
+      clear (click)="showImages()">
+      <ion-icon name="md-images"></ion-icon>
+    </button>
+
+    <button class="grey-button" ion-button icon-only clear *ngIf="!textBoxInFocus">
+      <ion-icon name="md-mic"></ion-icon>
+    </button>
+
+    <ion-input [(ngModel)]="message" (blur)="onBlur($event)" (focus)="onFocus($event)" placeholder="{{ textBoxPlaceholder }}"></ion-input>
+
+    <button ion-button icon-only clear (click)="sendMessage()">
+      <ion-icon *ngIf="!textBoxInFocus" name="md-thumbs-up"></ion-icon>
+      <ion-icon *ngIf="textBoxInFocus" name="md-send"></ion-icon>
+    </button>
+  </ion-row>
+
+  <ion-scroll *ngIf="imagesVisible" scrollX="true" scroll-avatar>
+    <ion-col *ngFor="let image of images" class="scroll-item" text-center>
+      <div>
+        <img [class.image-selected]="image.isSelected" src="{{ image.content }}" (click)="selectImage(image)">
+
+        <button *ngIf="image.isSelected" ion-button icon-only (click)="sendImage(image)">
+          <ion-icon name="md-send"></ion-icon>
+        </button>
+      </div>
+    </ion-col>
+  </ion-scroll>
+</ion-footer>

@@ -1,0 +1,232 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-item no-lines>
+        <button item-start ion-button icon-only clear>
+          <ion-icon name="md-search"></ion-icon>
+        </button>
+
+        <ion-input placeholder="Search"></ion-input>
+
+        <ion-row item-end>
+          <button text-center ion-button icon-only clear (click)="goToMyProfile()">
+            <ion-avatar class="facebook-reaction-icon">
+              <img src="{{ currentUser.pictureUrl }}">
+            </ion-avatar>
+          </button>
+
+          <button item-start ion-button icon-only clear>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-item>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-fab *ngIf="isMessagesOrActive" right bottom>
+    <button ion-fab>
+      <ion-icon name="md-text"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab *ngIf="isGroups" right bottom>
+    <button ion-fab>
+      <ion-icon name="md-people"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab *ngIf="isCalls" right bottom>
+    <button ion-fab>
+      <ion-icon name="md-call"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <div>
+    <ion-segment [(ngModel)]="homeSegment">
+      <ion-segment-button value="messages" (click)="segmentClick('messages')">
+        MESSAGES
+      </ion-segment-button>
+
+      <ion-segment-button value="active" (click)="segmentClick('active')">
+        ACTIVE ({{ activeUsers.length }})
+      </ion-segment-button>
+
+      <ion-segment-button value="groups" (click)="segmentClick('groups')">
+        GROUPS
+      </ion-segment-button>
+
+      <ion-segment-button value="calls" (click)="segmentClick('calls')">
+        CALLS
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="homeSegment">
+    <div *ngSwitchCase="'messages'">
+      <ion-item no-lines>
+        <p id="activeText" item-start>Active</p>
+
+        <ion-row item-end>
+          <button ion-button clear small>
+            <p id="watch-all-button">WATCH ALL</p>
+          </button>
+        </ion-row>
+      </ion-item>
+
+      <ion-scroll scrollX="true" scroll-avatar>
+        <ion-col *ngFor="let story of stories" class="scroll-item" text-center>
+          <ion-avatar>
+            <img src="{{ story.user.pictureUrl }}">
+          </ion-avatar>
+
+          <ion-item>
+            <span *ngIf="story.user.isOnline" class="dot" item-start></span>
+            <p class="text-ellipsis">{{ story.user.name }}</p>
+          </ion-item>
+        </ion-col>
+      </ion-scroll>
+
+      <ion-list id="conversation-list">
+        <ion-item *ngFor="let conversation of conversations" no-lines (click)="openConversation(conversation)">
+          <ion-avatar item-start>
+            <img src="{{ conversation.user.pictureUrl }}">
+          </ion-avatar>
+
+          <ion-row>
+            <ion-col>
+              <ion-row>
+                <p class="conversation-person">{{ conversation.user.name }}</p>
+              </ion-row>
+
+              <ion-row>
+                <p class="text-ellipsis conversation-last-message">{{ conversation.lastMessage.content }}</p>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row item-end>
+            <ion-col text-center>
+              <ion-row>
+                <p class="time-last-message">12:00 pm</p>
+              </ion-row>
+
+              <ion-row>
+                <ion-avatar>
+                  <img [class.hidden]="conversation.lastMessage.isRead" class="seen-message" src="{{ conversation.user.pictureUrl }}">
+                </ion-avatar>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'active'">
+      <ion-list id="activeUsersList" no-lines> 
+        <ion-item *ngFor="let activeUser of activeUsers">
+          <ion-avatar item-start>
+            <img src="{{ activeUser.pictureUrl }}">
+            <span *ngIf="activeUser.isOnline" class="active-user-dot" item-start></span>
+            <ion-badge *ngIf="!activeUser.isOnline" class="online-time-ago">2m</ion-badge>
+          </ion-avatar>
+
+          <p>{{ activeUser.name }}</p>
+
+          <button item-end ion-button icon-only clear>
+            <ion-icon name="md-hand"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'groups'">
+      <ion-list id="groups-list">
+        <ion-row *ngFor="let groupPair of groupPairs">
+          <ion-col text-center [class.hidden]="groupPair.group1.isEmpty">
+            <ion-card>
+              <ion-item>
+                <ion-avatar>
+                  <img src="{{ groupPair.group1.pictureUrl }}">
+                </ion-avatar>
+
+                <button item-end ion-button icon-only clear (click)="showGroupPopOver($event)">
+                  <ion-icon name="md-more"></ion-icon>
+                </button>
+              </ion-item>
+
+              <p class="group-name">{{ groupPair.group1.name }}</p>
+              <p class="last-active">Last active {{ groupPair.group1.lastActive }} hours ago</p>
+
+              <p class="group-members">{{ groupPair.group1.userNames }}</p>
+            </ion-card>
+          </ion-col>
+
+          <ion-col text-center [class.hidden]="groupPair.group2.isEmpty">
+            <ion-card>
+              <ion-item>
+                <ion-avatar>
+                  <img src="{{ groupPair.group2.pictureUrl }}">
+                </ion-avatar>
+
+                <button item-end ion-button icon-only clear>
+                  <ion-icon name="md-more"></ion-icon>
+                </button>
+              </ion-item>
+
+              <p class="group-name">{{ groupPair.group2.name }}</p>
+              <p class="last-active">Last active {{ groupPair.group2.lastActive }} hours ago</p>
+
+              <p class="group-members">{{ groupPair.group2.userNames }}</p>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'calls'">
+      <ion-list>
+        <ion-item no-lines>
+          <ion-icon class="item-icon" item-start name="md-people"></ion-icon>
+          <p>Start Group Call</p>
+        </ion-item>
+
+        <ion-item no-lines>
+          <ion-icon class="item-icon" item-start name="md-calendar"></ion-icon>
+          <p>Schedule Call</p>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Recent
+        </ion-list-header>
+
+        <ion-item *ngFor="let call of calls" no-lines>
+          <ion-avatar item-start>
+            <img src="{{ call.user.pictureUrl }}">
+          </ion-avatar>
+
+          <p>{{ call.user.name }}</p>
+
+          <ion-row>
+            <ion-icon class="call made" name="md-arrow-round-up"></ion-icon>
+            <ion-icon class="call received" name="md-arrow-round-down"></ion-icon>
+            <ion-icon class="call missed" name="md-arrow-round-down"></ion-icon>
+          </ion-row>
+
+          <ion-row item-end>
+            <button ion-button icon-only clear>
+              <ion-icon name="md-call"></ion-icon>
+            </button>
+
+            <button ion-button icon-only clear>
+              <ion-icon name="md-videocam"></ion-icon>
+            </button>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

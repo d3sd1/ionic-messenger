@@ -1,0 +1,194 @@
+page-conversation-details {
+    .toolbar-background {
+        background-color: map_get($colors, primary);
+    }
+
+    .back-button-md, .back-button-ios {
+        color: white;
+    }
+
+    .toolbar-md, .toolbar-ios {
+        padding: 0;
+    }
+
+    ion-title {
+        .item-md, .item-ios {
+            padding: 0;
+            max-height: 40px;        
+            background-color: map_get($colors, primary);
+        }
+    
+        .label-md, .label-ios {
+            margin: 0;
+        }
+    
+        .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start],
+        .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+            margin: 0;
+        }
+
+        [icon-only] ion-icon {
+            padding: 0 5px;
+            color: white;
+        }
+
+        .username {
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .active-ago {
+            color: white;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+    }
+
+    ion-buttons {
+        button {
+            ion-icon {
+                color: white;
+            }
+        }
+    }
+
+    .content {
+        .new-day-time {
+            font-size: 11px;
+            color: gray;
+        }
+
+        .myTextMessage {
+            background-color: map_get($colors, primary);
+        }
+
+        .otherTextMessage {
+            background-color: map_get($colors, secondary);
+        }
+
+        .myMessage {
+            padding: 0 5px;
+            border-radius: 20px;
+            width: 80%;
+            float: right;
+            margin: -5px 5px 5px 40px;
+
+            p {
+                color: white;
+            }
+        }
+
+        .otherMessage {
+            padding: 0 5px;
+            border-radius: 20px;
+            width: 80%;
+            float: left;
+            margin: -5px 5px 5px 5px;
+
+            p {
+                color: black;
+            }
+        }
+
+        .other-person-image {
+            height: 30px;
+            width: 30px;
+            margin-bottom: 5px;
+            border-radius: 25px;
+        }
+
+        .seen-image {
+            height: 20px;
+            width: 20px;
+            border-radius: 25px;
+        }
+
+        .delivered-image {
+            height: 15px;
+            width: 15px;
+        }
+
+        .image-border {
+            border: 2px solid lightgray;
+        }
+
+        .item-md, .item-ios {
+            padding: 0;
+            margin: 0;
+            max-height: 10px;
+        }
+    
+        .label-md, .label-ios {
+            margin: 0;
+        }
+
+        .seen-time {
+            float: right;
+            margin-right: 20px;
+            margin-top: -20px;
+            font-size: 11px;
+        }
+    }
+
+    .fab-md {
+        background-color: gray;
+
+        ion-icon {
+            color: white;
+        }
+    }
+
+    ion-footer {
+        background-color: white;
+
+        .grey-button {
+            color: gray;
+        }
+
+        ion-input {
+            max-height: 40px;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+            margin: 2px;
+        }
+
+        ion-scroll[scrollX] {
+            white-space: nowrap;
+            height: 200px;
+            overflow: hidden;
+        
+            .scroll-item {
+                display: inline-block;
+                max-width: 200px;
+              
+                img {
+                    height: 200px;
+                    width: 200px;
+                }
+
+                button {
+                    z-index: 3000;
+                    width: 40px;
+                    position: absolute;
+                    top: 80px;
+                    right: 77px;
+                    height: 40px;
+                    border-radius: 50%;
+                    transform: rotate(-90deg);
+                    background: gray;
+                    border: 2px solid white;
+                }
+            }
+        }
+    }
+
+    .selected {
+        color: map_get($colors, primary);
+    }
+
+    .image-selected {
+        filter: blur(3px);
+    }
+}

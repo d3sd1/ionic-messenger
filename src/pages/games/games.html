@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-item no-lines>
+        <button item-start ion-button icon-only clear>
+          <ion-icon name="md-search"></ion-icon>
+        </button>
+
+        <ion-input placeholder="Search"></ion-input>
+
+        <ion-row item-end>
+          <button text-center ion-button icon-only clear (click)="goToMyProfile()">
+            <ion-avatar class="facebook-reaction-icon">
+              <img src="{{ currentUser.pictureUrl }}">
+            </ion-avatar>
+          </button>
+
+          <button item-start ion-button icon-only clear>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-item>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-list-header>
+      Games
+    </ion-list-header>
+
+    <ion-item *ngFor="let game of games">
+      <ion-avatar item-start>
+        <img src="{{ game.pictureUrl }}">
+      </ion-avatar>
+
+      <p>{{ game.name }}</p>
+
+      <button item-end ion-button>
+        <p>PLAY</p>
+      </button>
+    </ion-item>
+  </ion-list>
+
+  <ion-col text-center>
+    <p id="play-one-game">Play at least one game to unlock the entire list</p>
+  </ion-col>
+</ion-content>

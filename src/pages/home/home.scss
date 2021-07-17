@@ -1,0 +1,246 @@
+page-home {
+    ion-content.content-md[padding] .scroll-content, 
+    ion-content.content-ios[padding] .scroll-content {
+        padding: 0px !important;
+    }
+
+    .toolbar-title-md, .toolbar-title-ios {
+        padding: 0;
+    }
+
+    ion-segment {
+        margin-top: 5px;
+    }
+
+    ion-title {
+        .item-md, .item-ios {
+            padding: 0;
+        }
+    
+        .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end],
+        .item-ios [item-left], .item-ios [item-right], .item-ios [item-start], .item-ios [item-end] {
+            margin: 0;
+        }
+    
+        .item-md ion-avatar ion-img, .item-md ion-avatar img,
+        .item-ios ion-avatar ion-img, .item-ios ion-avatar img {
+            height: 30px;
+            width: 30px;
+            margin: 2px 0 0 20px;
+        }
+
+        .item-md ion-avatar, .item-ios ion-avatar {
+            min-height: 25px;
+            min-height: 25px;
+            margin-top: -10px;
+
+            img {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+
+    .content {
+        #watch-all-button {
+            color: map_get($colors, primary);
+        }
+
+        ion-scroll[scrollX] {
+            white-space: nowrap;
+            height: 80px;
+            overflow: hidden;
+        
+            .scroll-item {
+                display: inline-block;
+                max-width: 60px;
+                padding: 5px 0 0 5px;
+                
+                .item-md, .item-ios {
+                    padding: 0;
+                }
+            
+                .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end],
+                .item-ios [item-left], .item-ios [item-right], .item-ios [item-start], .item-ios [item-end] {
+                    margin: 0;
+                }
+
+                img {
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 20px;
+                }
+                
+                ion-item {
+                    p {
+                        margin-left: 3px;
+                        font-size: 12px;
+                    }
+
+                    .label-md, .label-ios {
+                        margin: 0;
+                    }
+                    
+                    .dot {                 
+                        height: 8px;
+                        width: 8px;
+                        background-color: green;
+                        border-radius: 50%;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        
+          /* Hide ion-content scrollbar */
+        ::-webkit-scrollbar {
+            display:none;
+        }
+
+        #activeText {
+            margin-left: 10px;
+        }
+
+        #conversation-list {
+            .item-md, .item-ios {
+                padding-left: 5px;
+            }
+
+            .label-md, .label-ios {
+                margin: 0;
+            }
+
+            .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start],
+            .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+                margin: 0;
+            }
+
+            .conversation-person {
+                font-weight: bold;
+                margin-left: 10px;
+                margin-bottom: 5px;
+            }
+
+            .conversation-last-message {
+                margin-left: 10px;
+                font-size: 12px;
+            }
+
+            .time-last-message {
+                font-size: 12px;
+                margin-bottom: -10px;
+            }
+
+            .seen-message {
+                height: 20px;
+                width: 20px;
+                margin: 15px 0 0 20px;
+            }
+        }
+
+        .list-ios {
+            margin: 10px 0 0 0;
+        }
+
+        #activeUsersList {
+            .item-md, .item-ios {
+                padding-left: 5px;
+            }
+
+            .label-md, .label-ios {
+                margin: 0;
+            }
+
+            .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start],
+            .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+                margin: 0;
+            }
+
+            ion-item {
+                margin: 0;
+
+                .active-user-dot {                 
+                    height: 15px;
+                    width: 15px;
+                    background-color: green;
+                    border-radius: 50%;
+                    display: inline-block;
+                    margin-top: -20px;
+                    margin-left: 25px;
+                }
+
+                ion-badge {
+                    padding: 0px;
+                    color: white;
+                    background-color: green;
+                }
+
+                .online-time-ago {
+                    margin-top: -25px;
+                    margin-left: 25px;
+                }
+            }
+        }
+
+        #groups-list {
+            .card-md, .card-ios {
+                margin: 0;
+            }
+
+            ion-item {
+                ion-avatar {
+                    height: 40px;
+                    width: 40px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                button {
+                    margin-right: -5px;
+                    margin-top: -30px;
+                }
+            }
+            
+            .group-name {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .last-active {
+                font-size: 11px;
+            }
+
+            .group-members {
+                font-size: 11px;
+                margin-top: 40px;
+            }
+        }
+
+        .item-icon {
+            color: map_get($colors, primary);
+        }
+
+        .call {
+            font-size: 12px;
+            margin: 0 5px;
+            transform: rotate(45deg);
+        }
+
+        .made {
+            color: map_get($colors, primary);
+        }
+
+        .received {
+            color: green;
+        }
+
+        .missed {
+            color: red;
+        }
+
+        .list-header-md {
+            margin: 0;
+        }
+    }
+}

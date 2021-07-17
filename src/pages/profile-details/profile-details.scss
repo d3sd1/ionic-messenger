@@ -1,0 +1,64 @@
+page-profile-details {
+    .toolbar-background {
+        background-color: map_get($colors, primary);
+    }
+
+    .back-button-md, .back-button-ios {
+        color: white;
+    }
+
+    ion-content.content-md[padding] .scroll-content, 
+    ion-content.content-ios[padding] .scroll-content {
+        padding: 0px !important;
+    }
+
+    .card-md, .card-ios {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    .toolbar-md, .toolbar-ios {
+        padding: 0;
+    }
+
+    ion-title {
+        background-color: map_get($colors, primary);
+
+        p {
+            color: white;
+            font-size: 16px;
+        }        
+    }
+
+    ion-buttons {
+        button {
+            ion-icon {
+                color: white;
+            }
+        }
+    }
+
+    .content {
+        background-color: lightgray;
+
+        .username {
+            font-size: 20px;
+        }
+
+        .user-alias {
+            font-size: 12px;
+        }
+
+        .label-md, .label-ios {
+            margin: 0;
+        }
+
+        ion-list-header {
+            color: map_get($colors, primary);
+        }
+
+        .item-md ion-icon, .item-ios ion-icon {
+            color: map_get($colors, primary);
+        }
+    }
+}

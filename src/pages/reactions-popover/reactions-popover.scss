@@ -1,0 +1,15 @@
+page-reactions-popover {
+    .content {
+        border-radius: 50px;
+
+        ion-row  {
+            padding: 5px;
+            
+            .facebook-reaction-icon {
+                max-height: 30px;
+                max-width: 30px;
+                margin: 0 5px;
+            }
+        }       
+    }
+}

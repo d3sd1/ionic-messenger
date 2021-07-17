@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-item no-lines>
+        <button item-start ion-button icon-only clear>
+          <ion-icon name="md-search"></ion-icon>
+        </button>
+
+        <ion-input placeholder="Search"></ion-input>
+
+        <ion-row item-end>
+          <button text-center ion-button icon-only clear (click)="goToMyProfile()">
+            <ion-avatar class="facebook-reaction-icon">
+              <img src="{{ currentUser.pictureUrl }}">
+            </ion-avatar>
+          </button>
+
+          <button item-start ion-button icon-only clear>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-item>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-icon class="item-icon" item-start name="ios-chatbubbles"></ion-icon>
+      <p>Message Requests</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon class="item-icon" item-start name="md-mail"></ion-icon>
+      <p>Invite People</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon class="item-icon" item-start name="md-barcode"></ion-icon>
+      <p>Scan Messenger Code</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon class="item-icon" item-start name="md-text"></ion-icon>
+      <p>Make Messenger your SMS app</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      People with Messenger
+    </ion-list-header>
+
+    <ion-item *ngFor="let contact of contacts" no-lines>
+      <ion-avatar item-start>
+        <img src="{{ contact.pictureUrl }}">
+      </ion-avatar>
+
+      <p>{{ contact.name }}</p>
+      <p>@{{ contact.alias }}</p>
+
+      <ion-row item-end>
+        <button ion-button icon-only clear>
+          <ion-icon name="md-call"></ion-icon>
+        </button>
+
+        <button ion-button icon-only clear>
+          <ion-icon name="ios-information-circle-outline"></ion-icon>
+        </button>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

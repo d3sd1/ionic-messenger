@@ -1,0 +1,49 @@
+page-my-profile-details {
+    ion-content.content-md[padding] .scroll-content, 
+    ion-content.content-ios[padding] .scroll-content {
+        padding: 0px !important;
+    }
+
+    .content {
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card-md, .card-ios {
+            margin: 10px 0;
+            width: 100%;
+        }
+                    
+        .dot {                 
+            height: 12px;
+            width: 12px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .availability {
+            margin-left: 30px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        ion-label {
+            font-size: 14px;
+        }
+
+        ion-icon {
+            color: map_get($colors, primary);
+        }
+    }
+}

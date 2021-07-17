@@ -1,0 +1,8 @@
+{
+  "name": "ionMessenger",
+  "app_id": "808cc524",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

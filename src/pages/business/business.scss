@@ -1,0 +1,72 @@
+page-business {
+    .toolbar-title-md, .toolbar-title-ios {
+        padding: 0;
+    }
+
+    ion-title {
+        .item-md, .item-ios {
+            padding: 0;
+        }
+    
+        .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end],
+        .item-ios [item-left], .item-ios [item-right], .item-ios [item-start], .item-ios [item-end] {
+            margin: 0;
+        }
+    
+        .item-md ion-avatar ion-img, .item-md ion-avatar img,
+        .item-ios ion-avatar ion-img, .item-ios ion-avatar img {
+            height: 30px;
+            width: 30px;
+            margin: 2px 0 0 20px;
+        }
+
+        .item-md ion-avatar, .item-ios ion-avatar {
+            min-height: 25px;
+            min-height: 25px;
+            margin-top: -10px;
+
+            img {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+
+    .content {
+        .list-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .see-more {
+            color: map_get($colors, primary);
+        }
+
+        .business-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .flash-icon {
+            font-size: 12px;
+        }
+
+        .automated-messaging {
+            margin-left: 10px;
+            font-size: 13px;
+        }
+
+        .business-description {
+            font-size: 13px;
+        }
+
+        #categories-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .business-category {
+            margin-left: 10px;
+        }
+    }
+}

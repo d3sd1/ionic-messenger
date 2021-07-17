@@ -1,0 +1,52 @@
+page-games {
+    .toolbar-title-md, .toolbar-title-ios {
+        padding: 0;
+    }
+
+    ion-title {
+        .item-md, .item-ios {
+            padding: 0;
+        }
+    
+        .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end],
+        .item-ios [item-left], .item-ios [item-right], .item-ios [item-start], .item-ios [item-end] {
+            margin: 0;
+        }
+    
+        .item-md ion-avatar ion-img, .item-md ion-avatar img,
+        .item-ios ion-avatar ion-img, .item-ios ion-avatar img {
+            height: 30px;
+            width: 30px;
+            margin: 2px 0 0 20px;
+        }
+
+        .item-md ion-avatar, .item-ios ion-avatar {
+            min-height: 25px;
+            min-height: 25px;
+            margin-top: -10px;
+
+            img {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+
+    .content {
+        #play-one-game {
+            color: gray;
+        }
+
+        ion-list {
+            ion-item {
+                button {
+                    background-color: lightgray;
+
+                    p {
+                        color: map_get($colors, primary);
+                    }
+                }
+            }
+        }
+    }
+}
